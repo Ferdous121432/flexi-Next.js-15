@@ -1,7 +1,10 @@
 import React from "react";
+
 import SearchForm from "../../components/SearchForm";
-import { auth } from "@/auth";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
+
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 export default async function page({
   searchParams,
@@ -9,23 +12,27 @@ export default async function page({
   searchParams: Promise<{ query?: string }>;
 }) {
   const { query } = await searchParams;
+  const params = { search: query || null };
 
-  const posts = [
-    {
-      _createdAt: new Date().toISOString(),
-      views: 100,
-      author: {
-        _id: "1",
-        name: "John Doe",
-        image: "https://placehold.co/48x48",
-      },
-      title: "Startup 1",
-      category: "Tech",
-      _id: "1",
-      image: "https://placehold.co/48x48",
-      description: "Description 1",
-    },
-  ];
+  // const posts = await client.fetch(STARTUPS_QUERY);
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params }); // Fetching data from Sanity and live preview
+
+  // const posts = [
+  //   {
+  //     _createdAt: new Date().toISOString(),
+  //     views: 100,
+  //     author: {
+  //       _id: "1",
+  //       name: "John Doe",
+  //       image: "https://placehold.co/48x48",
+  //     },
+  //     title: "Startup 1",
+  //     category: "Tech",
+  //     _id: "1",
+  //     image: "https://placehold.co/48x48",
+  //     description: "Description 1",
+  //   },
+  // ];
 
   return (
     <>
@@ -47,7 +54,7 @@ export default async function page({
         </p>
         <ul className="mt-7 card_grid">
           {posts.length > 0 ? (
-            posts.map((post: startupTypeCard, number) => (
+            posts.map((post: StartupTypeCard) => (
               <StartupCard key={post?._id} post={post} />
             ))
           ) : (
@@ -55,6 +62,7 @@ export default async function page({
           )}
         </ul>
       </section>
+      <SanityLive />
     </>
   );
 }
