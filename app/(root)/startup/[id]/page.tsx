@@ -10,7 +10,7 @@ import Link from "next/link";
 
 import { formatDate } from "@/lib/utils";
 import { parse } from "path";
-import { Skeleton } from "@/components/ui/Skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
 import View from "@/components/view";
 import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
