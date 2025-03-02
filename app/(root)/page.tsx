@@ -53,7 +53,9 @@ export default async function page({
 
       <section className="section_container">
         <p className="text-30-semibold">
-          {query ? `Search results for "${query}"` : "Latest Startups"}
+          {query
+            ? `Search results for &quot;${query}&quot;`
+            : "Latest Startups"}
         </p>
         <ul className="mt-7 card_grid">
           {posts.length > 0 ? (
@@ -61,7 +63,9 @@ export default async function page({
               <StartupCard key={post?._id} post={post} />
             ))
           ) : (
-            <p className="text-20-semibold">No startups found for "{query}"</p>
+            <p className="text-20-semibold">
+              No startups found for &quot;{query}&quot;
+            </p>
           )}
         </ul>
       </section>

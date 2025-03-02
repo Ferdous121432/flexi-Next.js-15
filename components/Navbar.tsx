@@ -32,7 +32,7 @@ async function Navbar() {
                 </button>
               </form>
 
-              <img
+              <Image
                 src={session?.user?.image || ""}
                 alt="Profile"
                 width={40}

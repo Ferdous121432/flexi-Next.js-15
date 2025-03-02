@@ -9,7 +9,6 @@ import Link from "next/link";
 // import MarkdownIt from "markdown-it";
 
 import { formatDate } from "@/lib/utils";
-import { parse } from "path";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
 import View from "@/components/View";
@@ -40,7 +39,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <p className="sub-heading !max-w-5xl">{post.description}</p>
       </section>
       <section className="section_container">
-        <img
+        <Image
           src={post.image}
           alt="thumbnail"
           className="w-full h-auto rounded-xl"
