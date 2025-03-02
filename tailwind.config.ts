@@ -37,6 +37,7 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xs: "calc(var(--radius) - 6px)",
       },
       boxShadow: {
         100: "2px 2px 0px 0px rgb(0, 0, 0)",
