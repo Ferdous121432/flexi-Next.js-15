@@ -12,7 +12,7 @@ import { formatDate } from "@/lib/utils";
 import { parse } from "path";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
-import View from "@/components/view";
+import View from "@/components/View";
 import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 
 export const experimental_ppr = true;
