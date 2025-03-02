@@ -3,10 +3,13 @@ import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import MarkdownIt from "markdown-it";
+// import MarkdownIt from "markdown-it";
 
 import { formatDate } from "@/lib/utils";
 import { parse } from "path";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { Suspense } from "react";
+import View from "@/components/view";
 
 export const experimental_ppr = true;
 
@@ -16,9 +19,9 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
 
   if (!post) return notFound();
-  const md = new MarkdownIt();
-  const parsedContent = md.render(post?.pitch || "");
-
+  //   const md = new MarkdownIt();
+  //   const parsedContent = md.render(post?.pitch || "");
+  const parsedContent = post?.pitch;
   return (
     <>
       <section className="pink_container !min-h-[230px]">
@@ -67,6 +70,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <p className="no-result">No details provided</p>
           )}
         </div>
+
+        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+          <View id={id} />
+        </Suspense>
       </section>
     </>
   );
