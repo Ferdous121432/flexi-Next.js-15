@@ -15,7 +15,6 @@ export default async function page({
   const params = { search: query || null };
 
   const session = await auth();
-  console.log(session?.id);
 
   // const posts = await client.fetch(STARTUPS_QUERY);
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params }); // Fetching data from Sanity and live preview
